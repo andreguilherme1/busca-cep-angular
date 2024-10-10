@@ -1,0 +1,67 @@
+<div class="busca-rua">
+    <div class="busca-rua__card">
+      <div class="busca-rua__card-title">
+        <h1>Buscar por Rua</h1>
+      </div>
+
+      <div class="busca-rua__card-input">
+        <div class="busca-rua__card-input-state">
+            <mat-form-field>
+                <mat-label>Selecione o estado</mat-label>
+                <mat-error *ngIf="selectUfFormControl.hasError('required')">Você deve informar um <b>estado</b></mat-error>
+                <mat-select 
+                    (selectionChange)="buscaLocalidades(uf)" 
+                    [(ngModel)]="uf" 
+                    #selectUfFormControl="ngModel"
+                    required>
+                    <mat-option *ngFor="let estado of ufs" [value]="estado">{{estado.nome}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+          <div class="busca-rua__card-input-locality">
+              <mat-form-field>
+                <mat-label>Selecione a localidade</mat-label>
+                <mat-error *ngIf="selectLocalityFormControl.hasError('required')">Você deve informar uma <b>cidade</b></mat-error>
+                <mat-select 
+                    [(ngModel)]="cidade" 
+                    #selectLocalityFormControl="ngModel"
+                    required>
+                    <mat-option *ngFor="let localidade of localidades" [value]="localidade.nome">{{localidade.nome}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+
+          <div class="busca-rua__card-input-street">
+              <mat-form-field>
+                <mat-label>Nome da rua</mat-label>
+                <mat-error *ngIf="inputRuaFormControl.hasError('required')">Você deve informar uma <b>rua</b></mat-error>
+                <input 
+                    matInput 
+                    [(ngModel)]="rua" 
+                    #inputRuaFormControl="ngModel"
+                    required
+                    appaerence="outlined"
+                    >
+              </mat-form-field>
+          </div>
+
+          <div class="busca-rua__card-input-btn">
+            <button mat-flat-button (click)="buscaRua(uf, cidade, rua)" [disabled]="selectUfFormControl.invalid || selectLocalityFormControl.invalid || inputRuaFormControl.invalid">Buscar</button>
+        </div>
+      </div>   
+  
+      <div class="busca-rua__card-result" *ngIf="haveRua">
+        <mat-card appearance="outlined" *ngFor="let rua of ruaResponse" class="busca-rua__card-result-response">
+          <mat-card-content>
+                <p><b>CEP:</b> {{ rua.cep }} </p>
+                <p><b>Rua:</b> {{ rua.logradouro }} </p>
+                <p><b>Bairro:</b> {{ rua.bairro }} </p>
+                <p><b>Estado:</b> {{ rua.estado }} </p>
+                <p><b>Cidade:</b> {{ rua.localidade }} </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

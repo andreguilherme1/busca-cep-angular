@@ -1,0 +1,16 @@
+.busca-cep {
+  width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  
+  &__card {
+    padding: 50px;
+
+    &-input {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

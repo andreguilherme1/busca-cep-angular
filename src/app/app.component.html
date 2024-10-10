@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Buscar por CEP</ng-template>
+        <app-busca-cep></app-busca-cep>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Buscar por Rua">
+      <form [formGroup]="secondFormGroup">
+        <app-busca-rua></app-busca-rua>
+      </form>
+    </mat-step>
+  </mat-stepper>
+  
+</div>

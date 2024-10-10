@@ -1,0 +1,36 @@
+<div class="busca-cep">
+  <div class="busca-cep__card">
+    <div class="busca-cep__card-title">
+      <h1>Buscar por CEP</h1>
+    </div>
+    <div class="busca-cep__card-input">
+      <mat-form-field>
+        <mat-label >CEP</mat-label>
+        <mat-error *ngIf="meuInputFormControl.hasError('minlength')">CEP Inválido</mat-error>
+        <mat-error *ngIf="meuInputFormControl.hasError('required')">Você deve informar um <b>CEP</b></mat-error>
+        <input 
+        #meuInputFormControl="ngModel"
+        minlength="8"
+        maxlength="9"
+        matInput 
+        required
+        mask="00000-000"
+        [(ngModel)]="cep"
+        >
+      </mat-form-field>
+      <button mat-flat-button (click)="buscaCep()" [disabled]="meuInputFormControl.invalid">Buscar</button>
+    </div>   
+    <mat-error *ngIf="!cepVazio"><b>CEP</b> não encontrado.</mat-error>
+
+    <div class="busca-cep__card-result" *ngIf="haveCep">
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <p><b>Estado:</b> {{ cepResponse.uf }}</p>
+          <p><b>Localidade:</b> {{ cepResponse.localidade }}</p>
+          <p><b>Bairro:</b> {{ cepResponse.bairro }}</p>
+          <p><b>Rua:</b> {{ cepResponse.logradouro }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

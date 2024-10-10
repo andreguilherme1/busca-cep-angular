@@ -1,0 +1,28 @@
+.busca-rua {
+    width: 1000px;
+    margin: auto;
+    border-radius: 10px;
+    justify-content: center;
+
+    &__card {
+      padding: 50px;
+
+      &-title {
+        display: flex;
+        justify-content: center;
+      }
+  
+      &-input {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      &-result {
+        
+        &-response {
+            margin: 20px;
+            padding: 5px;
+        }
+      }
+    }
+  }
